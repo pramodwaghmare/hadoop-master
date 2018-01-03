@@ -1,0 +1,69 @@
+Introduction to Big Data
+	What is Big Data?
+	What are the challenges for processing big data?
+	What technologies support big data?
+	The V’s of BigData and Growing.
+	
+Introduction to Hadoop
+	An Overview of Hadoop
+	History of Hadoop
+	The Hadoop Distributed File System
+	MapReduce Programming model
+	Hadoop Ecosystem
+	
+Hadoop Cluster Setup
+	HDFS Design Goals
+	Name Node (NN), Secondary Name Node (SNN) and Data Nodes (DN)
+	Job Tracker(JT) and Task Tracker (TT)
+	Replica and Block Placement
+	HDFS commands
+	Read and Write Flow
+	
+Apache MapReduce
+	Components
+	Programming Model
+	Configuring and Writing MapReduce jobs in IDE
+	
+Hive
+	Introduction
+	Installation and Configuration
+	Data Types and File Formats
+	Loading data in internal table
+	Loading data in external table
+	Views in hive
+	Indexes in hive
+	Performance tuning in hive
+	
+Pig Latin
+	Installation and Configuration
+	What is grunt shell ?
+	Command Syntaxes
+	Data Model of Pig
+	Pig Script for wordcount
+	Java Code for running Pig for wordcount
+
+Sqoop
+	Installation and Configuration
+	sqoop-import data
+	sqoop-free form query import
+	sqoop-export data
+	
+Oozie
+	What is oozie ?
+	Why do we use it ?
+	oozie Architecture
+	oozie action nodes
+	
+NoSQL
+	Introduction and Interaction
+	Storage Architecture
+	CRUD Operations
+	Query NoSQL Stores
+	Modifying Data Stores
+	Indexing
+	Managing Transactions
+	NoSQL in cloud
+	Parallel Processing
+	Performance Tuning
+	Tools and Utilities
+	

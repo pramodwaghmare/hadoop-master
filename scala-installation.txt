@@ -1,0 +1,60 @@
+Following are the steps which you need to follow in order to install Scala 2.11.6 on Ubuntu 14.04
+
+Assumptions : username is hduser
+
+Step 1 : JAVA Installation
+If you have already installed JAVA, then you can skip this step.
+If JAVA is not installed, then please follow below steps in order to install JAVA 1.7
+
+command 1 : sudo apt-get update
+command 2 : sudo apt-get install openjdk
+
+Once above commands are executed successfully, then you can run following command for verification.
+$java -version
+Above command should give you output which might look something like this.
+
+java version "1.7.0_71"
+Java(TM) SE Runtime Environment (build 1.7.0_71-b13)
+Java HotSpot(TM) Client VM (build 25.0-b02, mixed mode)
+
+JAVA version may be different based on your installation.
+
+Step 2 : Download Scala Package.
+$cd
+$wget http://downloads.lightbend.com/scala/2.11.7/scala-2.11.7.tgz
+
+Step 3 : Extract Scala Package
+$sudo cp scala-2.11.7.tgz /usr/local
+$cd /usr/local
+$sudo tar -xvf scala-2.11.7.tgz
+$sudo mv scala-2.11.7 scala
+
+Step 4 : Update .bashrc file with following contents
+
+#SCALA VARIABLES START
+export SCALA_HOME=/usr/local/scala
+export PATH=$PATH:$SCALA_HOME/bin
+#SCALA VARIABLES END
+
+$cd
+$sudo nano .bashrc
+***PASTE ABOVE MENTIONED CONTENT IN THE FILE ANYWHERE***
+
+press CTRL + X
+press Y
+press ENTER
+
+Step 5 : SCALA Installation Verification
+For verifying SCALA installation, you can run following command.
+
+$scala -version
+
+Above command's output looks something like this
+Scala code runner version 2.11.7 -- Copyright 2002-2013, LAMP/EPFL
+
+If we are getting above output, it means SCALA is installed successfully.
+
+This completes SCALA Installation.
+
+Thanks for having a read.
+Cheers.

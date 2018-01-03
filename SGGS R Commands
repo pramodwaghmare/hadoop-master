@@ -1,0 +1,102 @@
+PRESENT WORKING DIRECTORY
+getwd()
+------------------------------------
+CHANGE DIRECTORY
+setwd()
+------------------------------------
+FILE/DIRECTORY EXISTS
+file.exists("dir1")
+------------------------------------
+CREATE DIRECTORY
+dir.create("dir1")
+------------------------------------
+DOWNLOAD FILE FROM INTERNET
+download.file("https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accessType=DOWNLOAD", destfile = "abc.com", method="curl")
+------------------------------------
+LIST DIRECTORY CONTENTS
+list.files(".")
+------------------------------------
+PRINT DATE
+date()
+------------------------------------
+LOADING FLAT FILES
+read.table()
+abcdata <- read.table("abc.txt", sep = ",", header=TRUE)
+head(abcdata)
+------------------------------------
+LOADING CSV FILES
+abcdata <- read.csv("abc.txt")
+head(abcdata)
+------------------------------------
+READING EXCEL FILES
+fileUrl <- "https://data.baltimorecity.gov/api/views/dz54-2aru/rows.xlsx?accessType=DOWNLOAD"
+download.file(fileUrl,destfile="abc.xlsx",method="curl")
+
+library(xlsx)
+abcdata <- read.xlsx("abc.xlsx",sheetIndex=1,header=TRUE)
+head(abcdata)
+
+colIndex <- 2:3
+rowIndex <- 1:4
+abcdata <- read.xlsx("abc.xlsx",sheetIndex=1,colIndex=colIndex,rowIndex=rowIndex)
+abcdata
+------------------------------------
+WRITING EXCEL FILES
+write.xlsx
+------------------------------------
+READING XML FILES
+library(XML)
+fileUrl <- "http://www.w3schools.com/xml/simple.xml"
+doc <- xmlTreeParse(fileUrl,useInternal=TRUE)
+rootNode <- xmlRoot(doc)
+xmlName(rootNode)
+names(rootNode)
+
+rootNode[[1]]
+rootNode[[1]][[1]]
+xmlSApply(rootNode,xmlValue)
+
+xpathSApply(rootNode,"//name",xmlValue)
+xpathSApply(rootNode."//price",xmlValue)
+------------------------------------
+EXTRACT CONTENTS BY ATTRIBUTES
+fileUrl <- "http://espn.go.com/nfl/team/_/name/bal/baltimore-ravens"
+doc <- htmlTreeParse(fileUrl,useInternal=TRUE)
+scores <- xpathSApply(doc,"//li[@class='score']",xmlValue)
+teams <- xpathSApply(doc,"//li[@class='team-name']",xmlValue)
+
+scores
+teams
+------------------------------------
+READING JSON FILES
+library(jsonlite)
+jsonData <- fromJSON("https://api.github.com/users/jtleek/repos")
+names(jsonData)
+jsonData$owner$login
+------------------------------------
+WRITING DATA FRAMES TO JSON
+myjson <- toJSON(iris, pretty=TRUE)
+cat(myjson)
+------------------------------------
+CONVERT BACK TO JSON
+iris2 <- fromJSON(myjson)
+head(iris2)
+------------------------------------
+READING DATA FROM WEB - WEBSCRAPPING
+con <- url("http://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en")
+htmlCode = readLines(con)
+close(con)
+htmlCode
+------------------------------------
+PARSING WITH XML
+library(xml)
+url <- "http://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en"
+html <- htmlTreeParse(url, useInternalNodes=TRUE)
+xpathSApply(html, "//title", xmlValue)
+xpathSApply(html,"//td[@id='col-citedby']",xmlValue)
+------------------------------------
+ACCESSING WEBSITES WITH PASSWORDS
+pg2 <- GET("http://httpbin.org/basic-auth/user/passwd",authenticate("user","passwd"))
+pg2
+names(pg2)
+------------------------------------

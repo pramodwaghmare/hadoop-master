@@ -1,0 +1,40 @@
+open terminal window
+sudo su hduser
+cd
+sudo wget http://apache.proserve.nl/sqoop/1.4.6/sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+sudo cp sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz /usr/local
+cd /usr/local
+sudo tar -xzvf sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+sudo mv sqoop-1.4.6.bin__hadoop-2.0.4-alpha sqoop
+sudo chown hduser:hadoop -R sqoop
+cd
+
+sudo nano ~/.bashrc
+
+#SQOOP VARIABLES START
+export SQOOP_HOME=/usr/local/sqoop
+export PATH=$PATH:$SQOOP_HOME/bin
+#SQOOP VARIABLES END
+
+ctrl+x
+Y
+<enter>
+
+source ~/.bashrc
+
+# obtain JDBC driver
+open web browser and download mysql connector jar (platform independent tar distribution) from http://dev.mysql.com/downloads/connector/j/ 
+
+cd $SQOOP_HOME/lib
+
+COMMAND SYNTAX => sudo cp /home/<username>/Downloads/mysql-connector-java-<version>.tar.gz .
+COMMAND EXAMPLE => sudo cp /home/<username>/Downloads/mysql-connector-java-5.1.38.tar.gz .
+
+COMMAND SYNTAX => sudo tar -xvf mysql-connector-java-<version>.tar.gz
+COMMAND EXAMPLE => sudo tar -xvf mysql-connector-java-5.1.38.tar.gz
+
+COMMAND SYNTAX => sudo cp mysql-connector-java-<version>/mysql-connector-java-<version>-bin.jar /usr/local/sqoop/lib/
+COMMAND EXAMPLE => sudo cp mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /usr/local/sqoop/lib/
+
+#for confirming that sqoop installed successfully, type following command.
+sqoop version

@@ -1,0 +1,23 @@
+sudo su hduser
+cd
+sudo wget http://mirror.tcpdiag.net/apache/hive/hive-1.0.1/apache-hive-1.0.1-bin.tar.gz
+sudo cp apache-hive-1.0.1-bin.tar.gz /usr/local/
+cd /usr/local/
+sudo tar -xvf apache-hive-1.0.1-bin.tar.gz
+sudo mv apache-hive-1.0.1-bin hive
+sudo chown hduser:hadoop -R hive
+cd
+sudo nano ~/.bashrc
+
+#HIVE VARIABLES START
+export HIVE_HOME=/usr/local/hive
+export PATH=$PATH:$HIVE_HOME/bin
+#HIVE VARIABLES END
+
+press ctrl+x
+press Y
+press enter
+
+source ~/.bashrc
+
+hive

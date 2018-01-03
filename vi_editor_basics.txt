@@ -1,0 +1,16 @@
+following are the basic things which you should know regarding vi editor
+
+1. we use vi editor to edit/create files using terminal window
+2. syntax :
+			vi <filename>
+			explanation : if <filename> does not exist, it will create that file and if it does exist, then it will open that file for editing
+3. there are two modes in vi editor
+	a. command mode
+	b. insert mode
+4. as soon as you open file in vi editor, it will open it in command mode by default.
+5. press i for going from command mode to insert mode
+6. press esc for going from insert mode to command mode
+7. press esc:wq to save file and exit vi editor
+8. press esc:q! to exit vi editor without saving
+9. press / and then type word to search for a particular word in the file
+10. following is the pattern in which find and replace works in vi editor. press :s/<pattern_to_search>/<pattern_to_replace>/

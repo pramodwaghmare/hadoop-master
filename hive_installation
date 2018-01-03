@@ -1,0 +1,41 @@
+sudo su hduser
+cd
+sudo wget http://mirror.tcpdiag.net/apache/hive/hive-1.1.1/apache-hive-1.1.1-bin.tar.gz
+sudo cp apache-hive-1.1.1-bin.tar.gz /usr/local/
+cd /usr/local/
+sudo tar -xvf apache-hive-1.1.1-bin.tar.gz
+sudo mv apache-hive-1.1.1-bin hive
+sudo chown hduser:hadoop -R hive
+cd
+sudo nano ~/.bashrc
+
+#HIVE VARIABLES START
+export HIVE_HOME=/usr/local/hive
+export PATH=$PATH:$HIVE_HOME/bin
+#HIVE VARIABLES END
+
+ctrl+x
+Y
+<enter>
+
+source ~/.bashrc
+
+hive
+
+if you get some error related to found class and expected Interface i.e. jline error, then delete jline jar using following command
+sudo rm  /usr/local/hadoop/share/hadoop/yarn/lib/jline-0.9.94.jar
+
+once deleted insert this line in .bashrc file
+sudo nano ~/.bashrc
+
+HADOOP_USER_CLASSPATH_FIRST=true
+
+ctrl+x
+Y
+<enter>
+
+source ~/.bashrc
+
+then type hive to run hive server
+
+hive

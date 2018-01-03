@@ -1,0 +1,28 @@
+follow below steps in order to install PIG 0.13.0 on Hadoop 2.6.0
+
+sudo su hduser
+cd
+sudo wget http://apache-mirror.rbc.ru/pub/apache/pig/pig-0.13.0/pig-0.13.0.tar.gz
+sudo cp pig-0.13.0.tar.gz /usr/local/
+cd /usr/local
+sudo tar -xvf pig-0.13.0.tar.gz 
+sudo mv pig-0.13.0 pig
+sudo chown hduser:hadoop -R pig
+cd
+sudo nano .bashrc
+
+#PIG VARIABLES START
+export PIG_HOME=/usr/local/pig
+export PATH=$PATH:$PIG_HOME/bin
+#PIG VARIABLES END
+
+source .bashrc
+
+there are two modes in which you can run pig.
+1. MapReduce Mode (Default Mode) => Default file system will be HDFS
+you can invoke this mode by typing following commands
+pig
+
+2. Local Mode => Default file system will be local file system
+you can invoke this mode by typing following commands
+pig -x local

@@ -1,0 +1,27 @@
+Login to the system with user ccf128
+
+Following process will indicate the installation steps for both R and RStudio
+
+step 1 : INSTALL R
+open terminal ctrl + alt + T
+
+sudo apt-get update 
+sudo apt-get install r-base
+
+press R command on terminal window, you'll get R prompt
+
+R
+
+step 2 : INSTALL RStudio
+
+open browser window and go to following path
+https://download1.rstudio.org/rstudio-0.99.902-i386.deb
+
+This will download RStudio Debian package
+go to Downloads directory and right click on this file
+open with Ubuntu Software Center
+
+It will open USC, click on install, give the password
+After few minutes, RStudio will be installed.
+
+You can access it under Applications->Programming->RStudio OR start->RStudio

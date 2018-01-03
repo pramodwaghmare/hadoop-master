@@ -1,0 +1,7 @@
+Download NetBeans IDE through web browser from https://netbeans.org/downloads/
+open new terminal window
+cd Downloads
+sudo chmod +x netbeans*
+./netbeans*
+
+Above command will open a GUI which will guide you to install netbeans step by step.

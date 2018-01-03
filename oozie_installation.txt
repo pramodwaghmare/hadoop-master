@@ -1,0 +1,91 @@
+following are the steps in order to install OOZIE 4.1.0  on hadoop 2.6.0 installed on ubuntu 14.04
+
+PREREQUISITES -
+Step 1 : Hadoop Installation
+You should install hadoop with the help of this link.
+
+Step 2 : Start Hadoop Cluster
+open terminal window
+command 1 : sudo su hduser
+command 2 : cd /usr/local/hadoop/sbin
+command 3 : ./start-all.sh
+
+Step 3 : Please verify that hadoop is running by using jps command.
+command 1 : jps
+
+############################
+#####OOZIE INSTALLATION#####
+############################
+open terminal window
+----------------------------
+step 1 : OOZIE tarball extraction
+command 1 : sudo su hduser
+command 2 : cd
+command 3 : sudo wget http://apache.bytenet.in/oozie/4.1.0/oozie-4.1.0.tar.gz
+command 4 : sudo mkdir -p /usr/hduser/setups/oozie
+command 5 : sudo cp oozie-4.1.0.tar.gz /usr/hduser/setups/oozie
+command 6 : cd /usr/hduser/setups/oozie
+command 7 : sudo tar xvzf oozie-4.1.0.tar.gz
+----------------------------
+step 2 : Maven installation
+command 1 : sudo apt-get update
+command 2 : sudo apt-get install maven
+----------------------------
+step 3 : OOZIE-Hadoop version configuration
+command 1 : cd oozie-4.1.0
+command 2 : sudo gedit pom.xml
+
+replace <hadoop.version>1.1.1</hadoop.version> with <hadoop.version>2.3.0</hadoop.version>
+
+save pom.xml file
+----------------------------
+step 3 : OOZIE Package Building
+command 1 : mvn clean package assembly:single -P hadoop-2 -DskipTests
+command 2 : cd /usr/local
+command 3 : sudo mkdir oozie
+command 4 : sudo cp -rf /usr/hduser/setups/oozie/oozie-4.1.0/distro/target/oozie-4.1.0-distro/oozie-4.1.0/ oozie/
+command 5 : cd oozie/oozie-4.1.0
+command 6 : sudo mkdir libext
+command 7 : sudo cp -R /usr/hduser/setups/oozie/oozie-4.1.0/hadooplibs/hadoop-2/target/hadooplibs/hadooplib-2.3.0.oozie-4.1.0/* libext
+command 8 : sudo wget -P libext http://dev.sencha.com/deploy/ext-2.2.zip
+----------------------------
+step 4 : OOZIE War Building
+command 1 : sudo ./bin/oozie-setup.sh prepare-war
+----------------------------
+step 5 : OOZIE-Hadoop configuration
+sudo nano /usr/local/hadoop/etc/hadoop/core-site.xml
+paste following content in core-site.xml file between <properties> and </properties>
+
+<property>
+<name>hadoop.proxyuser.hduser.hosts</name>
+<value>*</value>
+</property>
+<property>
+<name>hadoop.proxyuser.hduser.groups</name>
+<value>*</value>
+</property>
+
+ctrl + X
+Y
+<enter>
+----------------------------
+step 6 : Changing oozie directory owner and group
+command 1 : cd /usr/local
+command 2 : sudo chown -R hduser:hadoop oozie
+----------------------------
+step 7 : Creating Sharelib directory in HDFS
+command 1 : sudo su hduser
+command 2 : cd /usr/local/oozie/oozie-4.1.0
+command 3 : ./bin/oozie-setup.sh sharelib create -fs hdfs://localhost:54310
+----------------------------
+step 8 : Creating oozie database
+command 1 : ./bin/ooziedb.sh create -sqlfile oozie.sql -run
+----------------------------
+step 9 : Starting oozie server
+command 1 : ./bin/oozied.sh start
+----------------------------
+step 10 : Verify whether oozie server is up and running
+command 1 : http://localhost:11000/oozie/
+----------------------------
+step 9 : Stopping oozie server
+command 1 : ./bin/oozied.sh stop
